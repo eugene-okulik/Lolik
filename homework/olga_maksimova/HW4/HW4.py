@@ -6,6 +6,6 @@ my_dict = {"tuple": (1, 3, 6, 7, None, 'text', False, 2.42),
 print(my_dict["tuple"][-1])
 my_dict["list"].append(42)
 my_dict["list"].pop(1)
-my_dict["dict"]['i am a tuple'] = 'good morning'
+my_dict["dict"][('i am a tuple',)] = 'good morning'
 my_dict['set'].add('руки вверх')
 print(my_dict)
