@@ -13,10 +13,9 @@ summ1 = int(line1[line1.index(":") + 2:])
 summ2 = int(line2[line2.index(":") + 2:])
 summ3 = int(line3[line3.index(":") + 2:])
 
-print(summ1+10)
-print(summ2+10)
-print(summ3+10)
-
+print(summ1 + 10)
+print(summ2 + 10)
+print(summ3 + 10)
 
 
 # Task 3
@@ -26,4 +25,4 @@ subjects = ['math', 'biology', 'geography']
 students = ', '.join(students)
 subjects = ', '.join(subjects)
 my_text = 'Students {} study these subjects: {}'
-print(my_text.format(students,subjects))
+print(my_text.format(students, subjects))
