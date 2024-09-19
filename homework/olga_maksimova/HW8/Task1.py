@@ -11,6 +11,7 @@
 # 600, True - '$3785'
 import random
 
+
 def gen_salary(salary):
     salary = int(salary)
     bonus = random.choice([True, False])
@@ -20,6 +21,7 @@ def gen_salary(salary):
         return f'${total_salary}'
     else:
         return f'${salary}'
+
 
 user_salary = input('Введите вашу зарплату: ')
 result = gen_salary(user_salary)
