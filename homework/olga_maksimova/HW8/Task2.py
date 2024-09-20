@@ -11,26 +11,15 @@ def gen_fib():
         a, b = b, a + b
 
 
-# count = 1
-# for number in gen_fib():
-#     if count == 5:
-#         print(number)
-#     elif count == 200:
-#         print(number)
-#         count = 1
-#     elif count == 1000:
-#         print(number)
-#         count = 1
-#     elif count == 100000:
-#         print(number)
-#         break
-#     count += 0
-# не получается
-
-gen = gen_fib()
-
-# это то, что дал гигачат, но и оно неправильно
-print("Пятое число Фибоначчи:", next(gen) * 5)  # Третье число Фибоначчи (1)
-print("Двухсотое число Фибоначчи:", next(gen, None) * 200)  # Пятое число Фибоначчи (3)
-print("Тысячное число Фибоначчи:", next(gen, None) * 1000)  # Шестое число Фибоначчи (8)
-print("Стотысячное число Фибоначчи:", next(gen, None) * 100000)  # Седьмое число Фибоначчи (13)
+count = 1
+for number in gen_fib():
+    if count == 5:
+        print(number)
+    elif count == 200:
+        print(number)
+    elif count == 1000:
+        print(number)
+    elif count == 100000:
+        print(number)
+        break
+    count += 1
