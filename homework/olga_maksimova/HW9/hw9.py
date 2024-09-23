@@ -14,14 +14,14 @@ date = "Jan 15, 2023 - 12:05:33"
 python_date = datetime.datetime.strptime(date, '%b %d, %Y - %H:%M:%S')
 
 # Проверка
-print(f' Питоновский формат: {python_date}')
+print(f'Питоновский формат: {python_date}')
 
 # Печать месяца
-print(f' Месяц: {python_date.strftime('%B')}')
+print(f'Месяц: {python_date.strftime('%B')}')
 
 # Переводим в нужный формат "15.01.2023, 12:05"
 human_date = python_date.strftime('%d.%m.%Y, %H:%M')
-print(f' Человеческий формат: {human_date}')
+print(f'Человеческий формат: {human_date}')
 
 # Map, filter
 # Есть такой список:
@@ -35,7 +35,8 @@ temperatures = [20, 15, 32, 34, 21, 19, 25, 27, 30, 32, 34, 30, 29, 25, 27, 22, 
 
 # Фильтрация с лямбда функцией
 hot_days1 = filter(lambda x: x > 28, temperatures)
-print(f' Список жарких дней: {list(hot_days1)}')
-print(f' Минимальная температура: {min(temperatures)}')
-print(f' Максимальная температура: {max(temperatures)}')
-print(f' Средняя температура: {round(sum(temperatures) / len(temperatures), 0)}')
+print(f'Список жарких дней: {list(hot_days1)}')
+print(f'Минимальная температура: {min(temperatures)}')
+print(f'Максимальная температура: {max(temperatures)}')
+avg = round(sum(temperatures) / len(temperatures), 0)
+print(f'Средняя температура: {avg}')
