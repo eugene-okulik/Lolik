@@ -1,4 +1,6 @@
-INSERT INTO students (name, second_name) 
+
+
+INSERT INTO students (name, second_name)
 values ('Maria', 'Ivanova')
 
 INSERT INTO books (title, taken_by_student_id)
@@ -10,7 +12,7 @@ INSERT INTO `groups`  (title, start_date, end_date)
 Values ('OM', '18.02.1993', '24/05/2024')
 
 UPDATE  students   SET group_id = '2162'
-where id = '3467' or id = '3467'
+where id = '3467'
 
 INSERT INTO subjets  (title)
 Values ('Maths in Enlish'), ('Birth or Die'), ('Hello World')

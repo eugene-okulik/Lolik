@@ -98,7 +98,9 @@ marks_data = [
     {"value": "B+", "lesson_id": lesson_ids[1], "student_id": student_id},
     {"value": "C+", "lesson_id": lesson_ids[2], "student_id": student_id}
 ]
-insert_marks_query = "INSERT INTO marks (value, lesson_id, student_id) VALUES (%(value)s, %(lesson_id)s, %(student_id)s)"
+
+insert_marks_query = """
+INSERT INTO marks (value, lesson_id, student_id) VALUES (%(value)s, %(lesson_id)s, %(student_id)s)" """
 mark_ids = insert_and_get_ids(cursor, insert_marks_query, marks_data)
 db.commit()
 
@@ -115,17 +117,16 @@ for row in marks_result:
 
 complex_select_query = """
 SELECT s.id, s.name, s.second_name, g.id AS group_id, g.title AS title_group,
-       b.title AS taken_books, m.value AS mark, 
+       b.title AS taken_books, m.value AS mark,
        GROUP_CONCAT(sub.title SEPARATOR ', ') AS subject_titles
 FROM students s
 LEFT JOIN `groups` g ON s.group_id = g.id
 LEFT JOIN books b ON s.id = b.taken_by_student_id
 LEFT JOIN marks m ON s.id = m.student_id
-LEFT JOIN lessons l ON m.lesson_id = l.id 
+LEFT JOIN lessons l ON m.lesson_id = l.id
 LEFT JOIN subjets sub ON l.subject_id = sub.id
 WHERE s.id = %s
 GROUP BY s.id, s.name, s.second_name, g.id, g.title, b.title, m.value;
-
 """
 
 cursor.execute(complex_select_query, (student_id,))
