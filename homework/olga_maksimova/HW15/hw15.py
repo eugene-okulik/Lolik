@@ -23,8 +23,8 @@ db = mysql.connect(
 cursor = db.cursor(dictionary=True)
 
 # Добавляем пользователя
-cursor.execute("INSERT INTO students (name, second_name, group_id) VALUES (%s, %s, %s)",
-               ('Olga', 'Nukanukova', 333))
+cursor.execute("INSERT INTO students (name, second_name) VALUES (%s, %s)",
+               ('Olga', 'Nukanukova'))
 db.commit()
 student_id = cursor.lastrowid
 print(student_id)
@@ -72,10 +72,9 @@ for subject_id in subject_ids:
     print(f'ID предмета: {subject_id}')
 
 # Используем первый subject_id для lessons_data
-math_subject_id = subject_ids[
-    0]  # if subject_ids else None # проверяет, не пуст ли список c subject_id, если пуст - None
-lit_subject_id = subject_ids[1]  # if subject_ids else None
-russ_subject_id = subject_ids[2]  # if subject_ids else None
+math_subject_id = subject_ids[0]
+lit_subject_id = subject_ids[1]
+russ_subject_id = subject_ids[2]
 
 lessons_data = [
     {"title": "Maths", "subject_id": math_subject_id},
@@ -100,7 +99,7 @@ marks_data = [
 ]
 
 insert_marks_query = """
-INSERT INTO marks (value, lesson_id, student_id) VALUES (%(value)s, %(lesson_id)s, %(student_id)s)" """
+INSERT INTO marks (value, lesson_id, student_id) VALUES (%(value)s, %(lesson_id)s, %(student_id)s) """
 mark_ids = insert_and_get_ids(cursor, insert_marks_query, marks_data)
 db.commit()
 
@@ -126,7 +125,7 @@ LEFT JOIN marks m ON s.id = m.student_id
 LEFT JOIN lessons l ON m.lesson_id = l.id
 LEFT JOIN subjets sub ON l.subject_id = sub.id
 WHERE s.id = %s
-GROUP BY s.id, s.name, s.second_name, g.id, g.title, b.title, m.value;
+GROUP BY s.id, s.name, s.second_name, g.id, g.title, b.title, m.value
 """
 
 cursor.execute(complex_select_query, (student_id,))
