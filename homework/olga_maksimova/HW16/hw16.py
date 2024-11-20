@@ -33,8 +33,7 @@ for row in data:
 
     # Формируем запрос для проверки наличия данных в базе
     query = f"""
-SELECT s.id, s.name, s.second_name, g.id AS group_id, g.title AS title_group,
-    b.title AS taken_books, m.value AS mark, sub.title AS subject_title
+SELECT *
 FROM students s
 LEFT JOIN `groups` g ON s.group_id = g.id
 LEFT JOIN books b ON s.id = b.taken_by_student_id
