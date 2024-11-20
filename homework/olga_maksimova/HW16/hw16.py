@@ -1,6 +1,7 @@
 import dotenv
 import os
 import mysql.connector as mysql
+import csv
 
 dotenv.load_dotenv()
 
@@ -19,8 +20,6 @@ eu_path = os.path.join(homework_path, 'eugene_okulik')
 lesson_path = os.path.join(eu_path, 'Lesson_16')
 file_path = os.path.join(lesson_path, 'hw_data', 'data.csv')
 
-import csv
-
 with open(file_path) as csv_file:
     file_data = csv.reader(csv_file)
     data = []
@@ -34,17 +33,16 @@ for row in data:
 
     # Формируем запрос для проверки наличия данных в базе
     query = f"""
-        SELECT s.id, s.name, s.second_name, g.id AS group_id, g.title AS title_group,
-        b.title AS taken_books, m.value AS mark,
-        sub.title AS subject_title
-        FROM students s
-        LEFT JOIN `groups` g ON s.group_id = g.id
-        LEFT JOIN books b ON s.id = b.taken_by_student_id
-        LEFT JOIN marks m ON s.id = m.student_id
-        LEFT JOIN lessons l ON m.lesson_id = l.id
-        LEFT JOIN subjets sub ON l.subject_id = sub.id
-        WHERE s.name = %s AND s.second_name = %s AND g.title = %s AND b.title = %s
-          AND sub.title = %s AND l.title = %s AND m.value = %s
+SELECT s.id, s.name, s.second_name, g.id AS group_id, g.title AS title_group,
+    b.title AS taken_books, m.value AS mark, sub.title AS subject_title
+FROM students s
+LEFT JOIN `groups` g ON s.group_id = g.id
+LEFT JOIN books b ON s.id = b.taken_by_student_id
+LEFT JOIN marks m ON s.id = m.student_id
+LEFT JOIN lessons l ON m.lesson_id = l.id
+LEFT JOIN subjets sub ON l.subject_id = sub.id
+WHERE s.name = %s AND s.second_name = %s AND g.title = %s AND b.title = %s
+    AND sub.title = %s AND l.title = %s AND m.value = %s
     """
 
     cursor.execute(query, (name, second_name, group_title, book_title, subject_title, lesson_title, mark_value))
