@@ -32,7 +32,7 @@ for row in data:
     name, second_name, group_title, book_title, subject_title, lesson_title, mark_value = row
 
     # Формируем запрос для проверки наличия данных в базе
-    query = f"""
+    query = """
 SELECT *
 FROM students s
 LEFT JOIN `groups` g ON s.group_id = g.id
